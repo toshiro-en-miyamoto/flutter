@@ -81,11 +81,17 @@ class _RandomWordsState extends State<RandomWords> {
 - [Scrollable widgets](https://api.flutter.dev/flutter/widgets/ScrollView-class.html) [3]
   - `ListView`: A scrollable list of widgets arranged linearly.
   - `ListTile`: A single fixed-height row that typically contains some text as well as a leading or trailing icon.
+    - `title → Widget?`: The primary content of the list tile.
+    - `trailing → Widget?`: A widget to display after the title.
+    - `onTap → GestureTapCallback?`: Called when the user taps this list tile.
 - Flutter's painting API wrappers [5]
   - `EdgeInsets`: An immutable set of offsets in each of the four cardinal directions.
 - Text [4]
   - `Text`: A run of text with a single style.
     - If your app might be deployed to users who speak another language then you’ll need to internationalize it. Refer to [Internationalizing Flutter apps](https://flutter.dev/docs/development/accessibility-and-localization/internationalization).
+- Icon
+  - `Icon`: A graphical icon widget drawn with a glyph from a font described in an *IconData* such as material's predefined *IconDatas* in *Icons*. [4]
+  - `Icons`: Identifiers for the supported material design icons. [3]
 
 ## References
 
