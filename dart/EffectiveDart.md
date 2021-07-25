@@ -66,7 +66,140 @@ declaration.
 
 ## Variables
 
+### DO follow a consistent rule for `var` and `final` on local variables.
+
+Most local variables shouldn’t have type annotations and should be declared using just `var` or `final`.
+
+- Use `final` for local variables that are not reassigned and `var` for those that are.
+- Use `var` for all local variables, even ones that aren’t reassigned. Never use `final` for locals.
+
+Either rule is acceptable, but pick *one* and apply it consistently throughout your code.
+
+### AVOID storing what you can calculate.
+
+```dart
+// good
+class Circle {
+  double radius;
+
+  Circle(this.radius);
+
+  double get area => pi * radius * radius;
+  double get circumference => pi * 2.0 * radius;
+}
+```
+
+This code is shorter, uses less memory, and is less error-prone. It stores the minimal amount of data needed to represent the circle. There are no fields to get out of sync because there is only a single source of truth.
+
 ## Members
+
+### DON’T wrap a field in a getter and setter unnecessarily.
+
+In Dart, fields and getters/setters are completely indistinguishable. You can expose a field in a class and later wrap it in a getter and setter without having to touch any code that uses that field.
+
+```dart
+// good
+class Box {
+  Object? contents;
+}
+// bad
+class Box {
+  Object? _contents;
+  Object? get contents => _contents;
+  set contents(Object? value) {
+    _contents = value;
+  }
+}
+```
+
+### PREFER using a `final` field to make a read-only property.
+
+If you have a field that outside code should be able to see but not assign to, a simple solution that works in many cases is to simply mark it `final`.
+
+```dart
+// good
+class Box {
+  final contents = [];
+}
+// bad
+class Box {
+  Object? _contents;
+  Object? get contents => _contents;
+}
+```
+
+Of course, if you need to internally assign to the field outside of the constructor, you may need to do the "private field, public getter" pattern, but don't reach for that until you need to.
+
+### CONSIDER using `=>` for simple members.
+
+In addition to using `=>` for function expressions, Dart also lets you define members with it. That style is a good fit for simple members that just calculate and return a value.
+
+```dart
+// good
+double get area => (right - left) * (bottom - top);
+
+String capitalize(String name) =>
+    '${name[0].toUpperCase()}${name.substring(1)}';
+```
+
+You can also use `=>` on members that don’t return a value. This is idiomatic when a setter is small and has a corresponding getter that uses `=>`.
+
+```dart
+// good
+num get x => center.x;
+set x(num value) => center = Point(value, center.y);
+```
+
+If your declaration is more than a couple of lines or contains deeply nested expressions (cascades and conditional operators are common offenders) do yourself and everyone who has to read your code a favor and use a block body and some statements.
+
+```dart
+// good
+Treasure? openChest(Chest chest, Point where) {
+  if (_opened.containsKey(chest)) return null;
+
+  var treasure = Treasure(where);
+  treasure.addAll(chest.contents);
+  _opened[chest] = treasure;
+  return treasure;
+}
+// bad
+Treasure? openChest(Chest chest, Point where) => _opened.containsKey(chest)
+    ? null
+    : _opened[chest] = (Treasure(where)..addAll(chest.contents));
+```
+
+### DO initialize fields at their declaration when possible.
+
+If a field doesn’t depend on any constructor parameters, it can and should be initialized at its declaration. It takes less code and avoids duplication when the class has multiple constructors.
+
+```dart
+// good
+class ProfileMark {
+  final String name;
+  final DateTime start = DateTime.now();
+
+  ProfileMark(this.name);
+  ProfileMark.unnamed() : name = '';
+}
+// bad
+class ProfileMark {
+  final String name;
+  final DateTime start;
+
+  ProfileMark(this.name) : start = DateTime.now();
+  ProfileMark.unnamed()
+      : name = '',
+        start = DateTime.now();
+}
+```
+
+### Other guides
+
+The other guides in the Members section are:
+
+- **DON’T use `this.` except to redirect to a named constructor or to avoid shadowing.** JavaScript requires an explicit this. to refer to members on the object whose method is currently being executed, but Dart—like C++, Java, and C#—doesn’t have that limitation. There are only two times you need to use `this.`. 
+  - One is when a local variable with the same name shadows the member you want to access:
+  - The other time to use `this.` is when redirecting to a named constructor:
 
 ## Constructors
 
