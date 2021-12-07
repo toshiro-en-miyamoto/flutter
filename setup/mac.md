@@ -4,6 +4,9 @@ follow the instructions in [macOS install](https://flutter.dev/docs/get-started/
 
 ## Flutter SDK
 
+- if you already have installed SDK,
+  - `$ flutter doctor` to check a newer version
+  - `$ flutter upgrade` will update to the latest if any
 - download the Flutter SDK from [Get the Flutter SDK](https://flutter.dev/docs/get-started/install/macos)
 - unzip the file (zip) in $HOME, you will have the `~/flutter` directory
 - add the `flutter` tool to your path in `~/.zshenv`
@@ -42,12 +45,24 @@ To develop Flutter apps for iOS, you need a Mac with Xcode installed.
   - [✓] Chrome - develop for the web
   - [!] Android Studio (not installed)
   - [✓] VS Code (version 1.58.1)
-- the CocoaPods plugin is required if (1) your apps depend on *Flutter plugins* with iOS native code, or (2) you are developing macOS desktop apps. A plugin package is a special kind of package that makes platform functionality available to the app. For example, a plugin might provide Flutter apps with the ability to use a device’s camera.
+- `$ sudo gem install cocoapods`
+- `$ flutter doctor`
+  - [✓] Flutter (Channel stable, 2.5.3, on macOS 12.0.1 21A559 darwin-x64, locale ja-PH)
+  - [✓] Android toolchain - develop for Android devices (Android SDK version 31.0.0)
+  - [✓] Xcode - develop for iOS and macOS
+  - [✓] Chrome - develop for the web
+  - [✓] Android Studio (version 4.2)
+  - [✓] VS Code (version 1.58.2)
+  - [✓] Connected device (1 available)
+  - • No issues found!
+
 
 ## Android Studio
 
 Flutter relies on a full installation of Android Studio to supply its Android platform dependencies.
 
+- if you already have installed Android Studio,
+  - start Android Studio, which install the latest components if any
 - download [Android Studio](https://developer.android.com/studio)
 - install Androud Studio from the dmg file
 - start Android Studio, and go through the Android Studio Setup Wizard.
@@ -58,17 +73,25 @@ Flutter relies on a full installation of Android Studio to supply its Android pl
   - now that the tool has been installed, you can sign the SDK license
 - `$ flutter doctor --android-licenses`
 - `$ flutter doctor`
-  - [✓] Flutter (Channel stable, 2.2.3, ...)
+  - [✓] Flutter (Channel stable, 2.5.3, on macOS 12.0.1 21A559 darwin-x64, locale ja-PH)
   - [✓] Android toolchain - develop for Android devices (Android SDK version 31.0.0)
-  - [!] Xcode - develop for iOS and macOS
-    - ✗ CocoaPods not installed
+  - [✓] Xcode - develop for iOS and macOS
   - [✓] Chrome - develop for the web
-  - [✓] Android Studio (version 4.2)
-  - [✓] VS Code (version 1.58.1)
+  - [✓] Android Studio (version 2020.3)
+  - [✓] VS Code (version 1.58.2)
+  - [✓] Connected device (1 available)
+  - • No issues found!
 
 ## The Android Emulator
 
 With the Android Virtual Device Manager (AVD Manager) of the Android Studio, you can create virtual devices that run in the Adndroid emulator.
+
+- `$ ./Library/Android/sdk/emulator/emulator -accel-check`
+  - accel:
+  - 0
+  - Hypervisor.Framework OS X Version 12.0
+  - accel
+
 
 ## Flutter and Dart plugin
 
@@ -79,3 +102,20 @@ These plugins provide you with code completion, syntax highlighting, widget edit
   - on the Plugins pane,
     - install `Flutter` plugin
     - the Dart plugin will be installed along with the Flutter plugin
+
+## Web setup
+
+Flutter has support for building web applications in the stable channel. Any app created in Flutter 2 automatically builds for the web.
+
+Hot reload is not supported in a web browser Currently, Flutter supports hot restart, but not hot reload in a web browser.
+
+- make sure if the channel is Stable
+  - `$ flutter channel`
+- the Chrome browser is required to debugging web apps
+  - `$ flutter devices`
+    - 1 connected device:
+    - Chrome (web) • chrome • web-javascript • Google Chrome 96.0.4664.55
+- run a web app in the Chrome browser
+  - `$ flutter create myapp`
+  - `$ cd myapp`
+  - `$ flutter run -d chome`
