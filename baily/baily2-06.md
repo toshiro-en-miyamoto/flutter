@@ -99,7 +99,7 @@ We have a stateful widget named `MyTap` (#1) and its companion state class, `_My
 29: }
 ```
 
-<img src='./baily2-6/myTap.png' alt='Tap example' width='250'>
+<img src='./baily2-06/myTap.png' alt='Tap example' width='250'>
 
 The `GestureDetector` (#16) wraps the child widget (#22-24) and reports on gestures that happen within the child wiget tree.
 
@@ -210,7 +210,7 @@ For example, material widgets such as `ElevatedButton` embed a special widget na
 29: }
 ```
 
-<img src='./baily2-6/myButtonHandler.png' alt='Button handler example' width='250'>
+<img src='./baily2-06/myButtonHandler.png' alt='Button handler example' width='250'>
 
 A child widget `Text` widget (#23) is displayed in `ElevatedButton` (#17-24) and a tap on the button is handled by the function passed as the argument to the `onPress` constructor parameter (#18-22).
 

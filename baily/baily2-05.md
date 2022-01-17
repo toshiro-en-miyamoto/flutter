@@ -183,7 +183,7 @@ text.dart
 
 The preceding code renders the text as follows:
 
-<img src='./baily2-5/myText1.png' alt='Plain Text widget' width='250'>
+<img src='./baily2-05/myText1.png' alt='Plain Text widget' width='250'>
 
 With the `Scaffold` widget, you have a better look.
 
@@ -212,7 +212,7 @@ With the `Scaffold` widget, you have a better look.
 39: }
 ```
 
-<img src='./baily2-5/myText2.png' alt='Text widget in a Scaffold' width='250'>
+<img src='./baily2-05/myText2.png' alt='Text widget in a Scaffold' width='250'>
 
 #### The `Image` widget
 
@@ -255,7 +255,7 @@ pubspec.yaml
 
 Place the png file in the `your_app/assets` directory, and update `your_app/pubspec.yaml` to specify the image file as an asset. The preceding code displays the image as follow:
 
-<img src='./baily2-5/myImage1.png' alt='Plain Image widget' width='250'>
+<img src='./baily2-05/myImage1.png' alt='Plain Image widget' width='250'>
 
 Note that the [documentation for the `AssetImage` class](https://api.flutter.dev/flutter/painting/AssetImage-class.html) gives the code required to write a widget that fully conforms to the `AssetImage` and `Widget` protocols.
 
@@ -448,7 +448,7 @@ In this example, the `Container` widget will
 21: }
 ```
 
-<img src='./baily2-5/myTextInContainer.png' alt='Text in Container' width='250'>
+<img src='./baily2-05/myTextInContainer.png' alt='Text in Container' width='250'>
 
 The `Container` widgets holds usefull attributes:
 
@@ -496,7 +496,7 @@ The most common containers in Flutter are the `Row` and `Column` widgets. They h
 20: }
 ```
 
-<img src='./baily2-5/myTextInRow.png' alt='Text in Row' width='250'>
+<img src='./baily2-05/myTextInRow.png' alt='Text in Row' width='250'>
 
 #### Stack
 
